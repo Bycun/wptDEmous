@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div class="list">
+            播放列表 
+            <div class="sj">
+            </div>
+        </div>
+        <div class="mucuk">
+            <p>歌名1</p>
+            <p>歌名2</p>
+            <p>歌名3</p>
+            <p>歌名4</p>
+            <p>歌名5</p>
+            <p>歌名6</p>
+            <p>歌名7</p>
+        </div>
+</body>
+</html>
+
+    <script>
+        var op = document.querySelectorAll('p')
+        var sj = document.querySelector('.sj')
+        var mucuk = document.querySelector('.mucuk')
+        sj.onclick = function(){
+          if(mucuk.style.display == 'block'){
+           sj.className = 'ss'
+            mucuk.style.display = 'none'
+          }else{
+              mucuk.style.display = 'block'
+              sj.className = 'sj'
+          }
+        }
+
+        for(var i = 0; i<op.length; i++){
+          op[i].onmousemove = function(){
+             this.className = 'active'
+          }
+          op[i].onmouseout = function(){
+              this.className = ''
+          }
+        }
+
+    </script>
+
+<style>
+
+    .ss{
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 10px 10px;
+        border-color: transparent transparent #d9534f;
+        position: relative;
+        top: -21px;
+        right:-162px;
+        transform: rotate(360deg);
+    }
+
+    .mucuk{
+        width: 188px;
+        height: 250px;
+        background-color: #b6b9c7;
+        margin: 0 auto;
+    }
+
+    .active{
+        background-color: red;
+    }
+
+    p{
+        border-bottom: 1px solid #fff;
+    }
+
+    .list{
+        width: 188px;
+        height: 30px;
+        background-color: #b6b9c7;
+        line-height: 30px;
+        margin: 0 auto;
+    }
+    .sj{
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 10px 10px;
+        border-color: transparent transparent #d9534f;
+        position: relative;
+        top: -21px;
+        right:-162px;
+        transform: rotate(180deg);
+    }
+
+</style>

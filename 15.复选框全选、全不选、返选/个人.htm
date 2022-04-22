@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        body,ul,li,input {margin:0;padding:0;}
+        body {font:12px/1.2 Tohoma;}
+        li{list-style-type:none;}
+        /* 外层样式 */
+        #list {width:120px;margin:10px auto;border:1px solid black;border-radius:5px;
+        padding:0 5px;cursor:default;}
+        #list li {padding:8px;line-height:12px;vertical-align:middle;word-spacing: 5px;}
+        p {text-align: center;}
+        /* 全选样式*/
+        #pick {border-bottom:1px solid black;}
+        /* 反选样式 */
+        #pick span {color:aqua;}
+        #pick span:hover {color:red;cursor:pointer;}
+    </style>
+    <script type="text/javascript">
+    window.onload = function() {
+        var oInput = document.getElementsByTagName("input");
+        var oRevPick = document.getElementById("pick").getElementsByTagName("span")[0];
+        
+        /* 为了确认没有个input的chekout状态*/
+        for (var i=1;i<oInput.length;i++) {
+            oInput[i].index = i;
+            /* 全选功能 */
+            oInput[0].onmouseup = function() {
+                var oChange = document.getElementById("pick").getElementsByTagName("strong")[0];
+                if (this.checked == true) {
+                    oChange.innerHTML = " 全选";
+                    for (i=1;i<oInput.length;i++) {
+                        oInput[i].checked = false;
+                    }
+                }
+                else {
+                    oChange.innerHTML = " 全不选";
+                    for (i=1;i<oInput.length;i++) {
+                        oInput[i].checked = true;
+                    }
+                }
+            }
+            
+            /* 独立选择 */
+            oInput[i].onmouseup = function() {
+                var oChange = document.getElementById("pick").getElementsByTagName("strong")[0];
+                console.log(oInput[this.index].checked);
+                /* 每次独立选择完遍历一遍所有的input，判断是否每个都为true */
+                for(i=1;i<oInput.length;i++) {
+                    if(oInput[i].checked == false ) {
+                        oInput[0].checnked = true;
+                        oChange.innerHTML = " 全不选";
+                    }
+                    else {
+                        oInput[0].checnked = false;
+                        oChange.innerHTML = " 全选";
+                    }
+                }
+                
+            }
+            
+            /* 反选功能 */
+            oRevPick.onmouseup = function() {
+                
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <ul id="list">
+        <li id="pick"><input type="checkbox" ><strong> 全选</strong><span> 反选</span></li>
+        <li><input type="checkbox"> 选项（一）</li>
+        <li><input type="checkbox" > 选项（二）</li>
+        <li><input type="checkbox" > 选项（三）</li>
+        <li><input type="checkbox" > 选项（四）</li>
+        <li><input type="checkbox" > 选项（五）</li>
+        <li><input type="checkbox" > 选项（六）</li>
+        <li><input type="checkbox" > 选项（七）</li>
+        <li><input type="checkbox" > 选项（八）</li>
+        <li><input type="checkbox" > 选项（九）</li>
+        <li><input type="checkbox" > 选项（十）</li>
+    </ul> 
+    <p>1、切换全选/全部选文字；2、根据选中个数更新全选框状态</p>
+</body>
+</html>
